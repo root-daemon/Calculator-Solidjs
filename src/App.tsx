@@ -3,7 +3,7 @@ import { createSignal } from "solid-js";
 import Button from "./components/Button";
 
 const App: Component = () => {
-  const [input, setInput] = createSignal("");
+  const [input, setInput] = createSignal("0");
 
   function evaluate() {
     if (input().startsWith("0")) setInput(input().replace("0", ""));
@@ -13,7 +13,7 @@ const App: Component = () => {
   return (
     <div class="flex justify-center items-center h-screen ">
       <div class="flex flex-col w-60 bg-gray-200 p-2 rounded-lg">
-        <code class="bg-gray-400 rounded-lg p-5">{input()}</code>
+        <code class="bg-gray-400 h-10 flex items-center rounded-lg p-5">{input()}</code>
         <div class="flex flex-col">
         <div class="w-full grid grid-cols-[repeat(4,1fr)] grid-rows-[repeat(1,1fr)] gap-x-1 gap-y-1">
         <Button
@@ -22,7 +22,7 @@ const App: Component = () => {
             />
             <Button
               value={"<<"}
-              action={() => setInput(input().slice(0, -1))}
+              action={() => setInput(input().startsWith("0") ? input().replace("0", "").slice(0, -1) : input().slice(0, -1))}
             />
         <Button
               value={"%"}
