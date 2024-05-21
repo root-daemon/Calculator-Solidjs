@@ -7,7 +7,7 @@ interface ButtonProps {
 
 const Button = (props: ButtonProps) => {
   return (
-    <button class="p-2 w-10 bg-gray-200" onClick={props.action}>
+    <button class={"p-3 w-full flex items-center justify-center" + (props.value == '=' ? " bg-gray-500 rounded-xl text-white" : "")} onClick={props.action}>
       {props.value}
     </button>
   );
